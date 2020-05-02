@@ -54,12 +54,12 @@ export function getMetricMetaInfo (metric) {
       max: 50,
       unit: 'miles',
       step: 1, // When the user clicks on the button, how much we are going to increment the specific count
-      type: 'steppers',
+      type: 'stepper',
       getIcon() {
         return(
           <View>
             <MaterialIcons 
-              name='direction-run'
+              name='directions-run'
               color={'black'}
               size={35}
             />
@@ -72,7 +72,7 @@ export function getMetricMetaInfo (metric) {
       max: 100,
       unit: 'miles',
       step: 1, // When the user clicks on the button, how much we are going to increment the specific count
-      type: 'steppers',
+      type: 'stepper',
       getIcon() {
         return(
           <View>
@@ -90,7 +90,7 @@ export function getMetricMetaInfo (metric) {
       max: 9900,
       unit: 'meters',
       step: 100, // When the user clicks on the button, how much we are going to increment the specific count
-      type: 'steppers',
+      type: 'stepper',
       getIcon() {
         return (
           <View>
@@ -140,5 +140,12 @@ export function getMetricMetaInfo (metric) {
       }
     }
   }
-  return typeof metric === undefined ? info : info[metric]
+  return !metric ? info : info[metric]
+}
+
+export function getDailyReminderValue() {
+  return {
+    today: "👋🏾 Don't forget to log your data today!",
+
+  }
 }
