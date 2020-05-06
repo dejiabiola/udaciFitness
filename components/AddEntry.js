@@ -10,6 +10,7 @@ import { submitEntry, removeEntry } from '../utils/api'
 import { connect } from 'react-redux'
 import { addEntry } from '../actions'
 import { white, purple } from '../utils/colors'
+import { CommonActions } from '@react-navigation/native';
 
 
 function SubmitButton({ onPress }) {
@@ -71,23 +72,35 @@ class AddEntry extends Component {
       eat: 0
     }))
 
-    // TODO: update redux
     this.props.dispatch(addEntry({
       [key]: entry
     }))
-    // todo: navigate to home
+    
+    this.toHome();
+
     submitEntry({ entry, key })
     // todo: clear the local notification 
   }
 
   reset = () => {
     const key = timeToString()
-    // Todo update redux, route to home
+
     this.props.dispatch(addEntry({
       [key]: getDailyReminderValue()
     }))
+    this.toHome()
     removeEntry(key)
   }
+
+  toHome = () => {
+    this.props.navigation.dispatch(
+      CommonActions.goBack({
+        // Go back from the route that has the key of AddEntry
+        key: 'AddEntry',
+      })
+    )
+  }
+
 
   render() {
     const metaInfo = getMetricMetaInfo()
