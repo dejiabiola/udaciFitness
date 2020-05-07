@@ -14,6 +14,7 @@ import EntryDetail from "./components/EntryDetail";
 import 'react-native-gesture-handler';
 import AddEntry from './components/AddEntry'
 import History from './components/History';
+import Live from './components/Live';
 
 function UdaciStatusBar({backgroundColor, ...props}) {
   return (
@@ -37,11 +38,15 @@ const TabNav = () => (
               let icon;
               if (route.name === "Add Entry") {
                   icon = (
-                      <FontAwesome name="plus-square" size={size} color={color}/>
+                      <FontAwesome name="plus-square" size={30} color={color}/>
                   );
               } else if (route.name === "History") {
                   icon = (
-                      <Ionicons name="ios-bookmarks" size={size} color={color}/>
+                      <Ionicons name="ios-bookmarks" size={30} color={color}/>
+                  );
+              } else if (route.name === 'Live') {
+                icon = (
+                      <Ionicons name="ios-speedometer" size={30} color={color}/>
                   );
               }
               return icon;
@@ -66,6 +71,7 @@ const TabNav = () => (
   >
       <Tabs.Screen name="History" component={History}/>
       <Tabs.Screen name="Add Entry" component={AddEntry}/>
+      <Tabs.Screen name="Live" component={Live} />
   </Tabs.Navigator>
 );
 
